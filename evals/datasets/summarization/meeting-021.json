@@ -1,0 +1,15 @@
+{
+  "transcript": "Avery: I like the idea of moving standup to afternoons, but let's ask the remote team first. Quinn, run a quick poll this week. Quinn: I'll post it. Avery: We will decide next Friday.",
+  "expected": {
+    "decisions": [
+      "Decide whether to move standup to afternoons next Friday after consulting the remote team."
+    ],
+    "action_items": [
+      {
+        "owner": "Quinn",
+        "task": "Run a poll of the remote team about moving standup to afternoons.",
+        "due": "this week"
+      }
+    ]
+  }
+}
