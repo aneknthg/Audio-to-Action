@@ -1,0 +1,16 @@
+{
+  "transcript": "Rosa: The team chose option B for the database migration because it allows rollback. Eli, write the migration checklist before the planning session on June 12. Eli: I'll draft it. Rosa: Schedule the migration only after the checklist is approved.",
+  "expected": {
+    "decisions": [
+      "Choose option B for the database migration because it allows rollback.",
+      "Schedule the migration only after the checklist is approved."
+    ],
+    "action_items": [
+      {
+        "owner": "Eli",
+        "task": "Write the migration checklist.",
+        "due": "before the planning session on June 12"
+      }
+    ]
+  }
+}
