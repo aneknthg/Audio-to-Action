@@ -1,0 +1,15 @@
+{
+  "transcript": "Tess: We reviewed the survey results and decided to add a password reset link to the sign-in page. Ben, please implement it for the next release. Ben: Got it. Tess: No deadline beyond the next release.",
+  "expected": {
+    "decisions": [
+      "Add a password reset link to the sign-in page for the next release."
+    ],
+    "action_items": [
+      {
+        "owner": "Ben",
+        "task": "Implement a password reset link on the sign-in page.",
+        "due": "next release"
+      }
+    ]
+  }
+}
