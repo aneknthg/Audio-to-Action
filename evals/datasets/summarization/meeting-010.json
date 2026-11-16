@@ -1,0 +1,15 @@
+{
+  "transcript": "Harper: Should we switch to the new analytics vendor? Jo: We don't have enough information yet. Let's revisit after the trial. Harper: Jo, collect feedback from the analysts before then. Jo: Sure.",
+  "expected": {
+    "decisions": [
+      "Defer the analytics vendor decision until after the trial."
+    ],
+    "action_items": [
+      {
+        "owner": "Jo",
+        "task": "Collect feedback from the analysts.",
+        "due": "before the trial review"
+      }
+    ]
+  }
+}
