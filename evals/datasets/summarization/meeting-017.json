@@ -1,0 +1,15 @@
+{
+  "transcript": "Finn: We should reduce the weekly report from ten pages to five. Amara: Let's try five pages for the next two weeks and then review. Finn: Agreed, as a trial. Amara, prepare the first shorter report next Monday.",
+  "expected": {
+    "decisions": [
+      "Trial a five-page weekly report for the next two weeks, then review it."
+    ],
+    "action_items": [
+      {
+        "owner": "Amara",
+        "task": "Prepare the first five-page weekly report.",
+        "due": "next Monday"
+      }
+    ]
+  }
+}
