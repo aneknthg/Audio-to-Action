@@ -1,0 +1,16 @@
+{
+  "transcript": "Maya: We should move the launch review to Thursday. Leo, can you update the calendar invite by end of day? Leo: Yes. Maya: We also agreed to keep the beta limited to 20 customers. No other decisions.",
+  "expected": {
+    "decisions": [
+      "Move the launch review to Thursday.",
+      "Keep the beta limited to 20 customers."
+    ],
+    "action_items": [
+      {
+        "owner": "Leo",
+        "task": "Update the calendar invite.",
+        "due": "end of day"
+      }
+    ]
+  }
+}
