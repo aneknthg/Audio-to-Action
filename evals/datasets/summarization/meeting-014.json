@@ -1,0 +1,15 @@
+{
+  "transcript": "Owen: The new pricing page is ready. We agreed to publish it on Monday if QA passes. Priya, coordinate the QA review by Friday. Priya: Understood.",
+  "expected": {
+    "decisions": [
+      "Publish the new pricing page on Monday, conditional on QA passing."
+    ],
+    "action_items": [
+      {
+        "owner": "Priya",
+        "task": "Coordinate the QA review.",
+        "due": "by Friday"
+      }
+    ]
+  }
+}
