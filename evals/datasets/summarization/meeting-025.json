@@ -1,0 +1,21 @@
+{
+  "transcript": "Theo: We agreed to cancel the unused design tool subscription at the end of the billing month. Sara, confirm the cancellation date with finance by Tuesday. Sara: I'll check. Theo: Please keep the shared files exported before cancellation; I'll take care of that today.",
+  "expected": {
+    "decisions": [
+      "Cancel the unused design tool subscription at the end of the billing month.",
+      "Export the shared files before cancellation."
+    ],
+    "action_items": [
+      {
+        "owner": "Sara",
+        "task": "Confirm the cancellation date with finance.",
+        "due": "by Tuesday"
+      },
+      {
+        "owner": "Theo",
+        "task": "Export the shared files.",
+        "due": "today"
+      }
+    ]
+  }
+}
