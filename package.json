@@ -1,14 +1,17 @@
 {
   "name": "audio-meeting-action-items",
-  "version": "2.0.0",
-  "description": "Audio Meeting to Action Items pipeline: upload .mp3/.wav, transcribe (Whisper on Groq), summarize (LLM on Groq), React frontend",
+  "version": "2.1.0",
+  "description": "Audio Meeting to Action Items pipeline: upload .mp3/.wav, transcribe (Whisper on Groq), summarize (LLM on Groq), React frontend, evals",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
     "client": "npm --prefix client run dev",
     "build": "npm --prefix client run build",
-    "setup": "npm install && npm --prefix client install"
+    "setup": "npm install && npm --prefix client install",
+    "test": "node --test",
+    "eval:summarize": "node evals/run-summarize-eval.js",
+    "eval:transcribe": "node evals/run-transcribe-eval.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

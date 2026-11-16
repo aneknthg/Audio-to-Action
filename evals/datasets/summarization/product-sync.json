@@ -1,0 +1,15 @@
+{
+  "transcript": "okay so um thanks everyone for joining this is the weekly sync for the mobile app launch sarah can you start with the status sure so the beta went out to two hundred testers last week and the main complaint is the onboarding flow it takes too long so we decided to cut the onboarding from five screens down to three right dan yeah I can do that I'll have the new designs ready by wednesday also we agreed the launch date stays october thirtieth we only push it if the payment bug isn't fixed priya you own the payment bug right yes I'll have a fix in by friday and I'll post an update in the channel and someone needs to email the beta testers to thank them I can do that said sarah by end of day tomorrow ok great thanks all",
+  "expected": {
+    "decisions": [
+      "Cut the onboarding flow from five screens to three",
+      "Keep the launch date at October 30 unless the payment bug is not fixed"
+    ],
+    "action_items": [
+      { "owner": "Dan", "task": "Prepare new onboarding designs by Wednesday" },
+      { "owner": "Priya", "task": "Fix the payment bug by Friday" },
+      { "owner": "Priya", "task": "Post an update in the channel" },
+      { "owner": "Sarah", "task": "Email the beta testers to thank them" }
+    ]
+  }
+}

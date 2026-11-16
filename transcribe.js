@@ -23,13 +23,13 @@ function getClient() {
  * Send an in-memory audio buffer to the Whisper API.
  * Returns the raw, unformatted transcript as a single string.
  */
-async function transcribeBuffer(buffer, filename, mimeType) {
+async function transcribeBuffer(buffer, filename, mimeType, { model } = {}) {
   const api = getClient();
   // Wrap the buffer as a named file so the API can detect the format from the extension
   const file = await toFile(buffer, filename, { type: mimeType });
   const result = await api.audio.transcriptions.create({
     file,
-    model: WHISPER_MODEL,
+    model: model || WHISPER_MODEL,
     response_format: "json",
   });
   return result.text;

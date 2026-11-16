@@ -2,12 +2,12 @@ const OpenAI = require("openai");
 const { normalizeMarkdown, hasRequiredSections } = require("./format");
 
 const BASE_URL = process.env.LLM_BASE_URL || "https://api.groq.com/openai/v1";
-const SUMMARY_MODEL = process.env.SUMMARY_MODEL || "";
+const SUMMARY_MODEL = process.env.SUMMARY_MODEL || "llama-3.3-70b-versatile";
 
 const SYSTEM_PROMPT = `You turn raw meeting transcripts into structured meeting notes.
 
 The transcript is unformatted speech-to-text: no speaker labels, little punctuation, possible transcription errors. Read it carefully and respond with ONLY a markdown document in exactly this structure and nothing else (no preamble, no closing remarks, no code fences):
-<structure>
+
 ## Meeting Summary
 A concise paragraph (3-6 sentences) covering the purpose of the meeting, the main topics discussed, and the outcome.
 
@@ -21,7 +21,6 @@ A concise paragraph (3-6 sentences) covering the purpose of the meeting, the mai
 - Omit the "(Due: ...)" part when no deadline was mentioned.
 - If it is unclear who is responsible, use **Unassigned** as the owner. Never invent names or deadlines.
 - If there are no action items, write a single bullet: "- No action items were identified."
-</structure>
 
 Rules:
 - Use only information present in the transcript. Do not add facts.
@@ -39,9 +38,9 @@ function getClient() {
   return client;
 }
 
-async function callModel(transcript, extraReminder) {
+async function callModel(transcript, extraReminder, model) {
   const completion = await getClient().chat.completions.create({
-    model: SUMMARY_MODEL,
+    model: model || SUMMARY_MODEL,
     temperature: 0.2,
     messages: [
       { role: "system", content: SYSTEM_PROMPT + (extraReminder ? `\n\n${extraReminder}` : "") },
@@ -56,14 +55,15 @@ async function callModel(transcript, extraReminder) {
  * sections: Meeting Summary, Key Decisions, Action Items.
  * Retries once with a stricter reminder if the format comes back wrong.
  */
-async function summarizeTranscript(transcript) {
-  let md = await callModel(transcript);
+async function summarizeTranscript(transcript, { model } = {}) {
+  let md = await callModel(transcript, undefined, model);
   if (hasRequiredSections(md)) return md;
 
   md = await callModel(
     transcript,
     "Your previous answer did not follow the required format. Output ONLY the three sections " +
-      "'## Meeting Summary', '## Key Decisions' and '## Action Items' (action items as a bulleted list)."
+      "'## Meeting Summary', '## Key Decisions' and '## Action Items' (action items as a bulleted list).",
+    model
   );
   if (hasRequiredSections(md)) return md;
 

@@ -5,8 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const OpenAI = require("openai");
-const { transcribeBuffer } = require("./transcribe");
-const { summarizeTranscript } = require("./summarize");
+const { processAudio } = require("./pipeline");
 
 const PORT = process.env.PORT || 3000;
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 MB (Groq free-tier per-file limit for Whisper)
@@ -67,42 +66,24 @@ app.post("/api/upload", upload.single("audio"), async (req, res, next) => {
       return res.status(415).json({ error: "File content does not match a valid .mp3 or .wav file" });
     }
 
-    // Step 1: speech-to-text. If this fails there is nothing to return, so errors go to the handler.
-    const transcript = await transcribeBuffer(
+    // transcript = raw Whisper text; summary = markdown (Meeting Summary / Key Decisions / Action Items).
+    // Transcription errors go to the error handler; summary errors come back in `summaryError`.
+    const { transcript, summary, summaryError } = await processAudio(
       req.file.buffer,
       path.basename(req.file.originalname),
       req.file.mimetype
     );
 
-    const response = {
+    res.status(200).json({
       file: {
         originalName: req.file.originalname,
         mimeType: req.file.mimetype,
         sizeBytes: req.file.size,
       },
-      transcript, // raw, unformatted text from Whisper
-      summary: null, // markdown string: Meeting Summary / Key Decisions / Action Items
-      summaryError: null,
-    };
-
-    // Step 2: summarize. A failure here still returns the transcript so the work isn't lost.
-    if (!transcript.trim()) {
-      response.summaryError = "No speech was detected in the audio.";
-    } else {
-      try {
-        response.summary = await summarizeTranscript(transcript);
-      } catch (err) {
-        console.error("Summarization failed:", err.status || err.code || "", err.message);
-        response.summaryError =
-          err.code === "BAD_FORMAT"
-            ? "The AI did not return the expected format. Try again."
-            : err instanceof OpenAI.APIError
-              ? `Summarization failed: ${err.message}`
-              : "Summarization failed.";
-      }
-    }
-
-    res.status(200).json(response);
+      transcript,
+      summary,
+      summaryError,
+    });
   } catch (err) {
     next(err);
   }
