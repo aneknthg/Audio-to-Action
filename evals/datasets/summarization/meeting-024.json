@@ -1,0 +1,15 @@
+{
+  "transcript": "Inez: We could replace the signup form, but the experiment is inconclusive. Let's keep the current form for now and rerun the test with more traffic. Pavel, prepare the experiment plan. No date set.",
+  "expected": {
+    "decisions": [
+      "Keep the current signup form for now and rerun the experiment with more traffic."
+    ],
+    "action_items": [
+      {
+        "owner": "Pavel",
+        "task": "Prepare a plan to rerun the signup form experiment.",
+        "due": null
+      }
+    ]
+  }
+}
