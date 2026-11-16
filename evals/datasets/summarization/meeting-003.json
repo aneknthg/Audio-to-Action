@@ -1,0 +1,13 @@
+{
+  "transcript": "Sam: Any update on the vendor proposal? Priya: I will ask them to resend the pricing sheet. Sam: Great. We should compare it with our current contract next week, but nobody is assigned to that yet.",
+  "expected": {
+    "decisions": [],
+    "action_items": [
+      {
+        "owner": "Priya",
+        "task": "Ask the vendor to resend the pricing sheet.",
+        "due": null
+      }
+    ]
+  }
+}
