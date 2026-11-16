@@ -1,0 +1,15 @@
+{
+  "transcript": "Max: The invoice totals don't match the contract. Dani, compare the line items and flag any discrepancy by end of day tomorrow. Dani: Okay. Max: We are not approving payment until we resolve the mismatch.",
+  "expected": {
+    "decisions": [
+      "Hold payment approval until the invoice and contract mismatch is resolved."
+    ],
+    "action_items": [
+      {
+        "owner": "Dani",
+        "task": "Compare invoice line items with the contract and flag discrepancies.",
+        "due": "by end of day tomorrow"
+      }
+    ]
+  }
+}
