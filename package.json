@@ -11,6 +11,7 @@
     "setup": "npm install && npm --prefix client install",
     "test": "node --test",
     "eval:summarize": "node evals/run-summarize-eval.js",
+    "eval:meetingbank": "node evals/run-meetingbank-eval.js",
     "eval:transcribe": "node evals/run-transcribe-eval.js"
   },
   "dependencies": {
