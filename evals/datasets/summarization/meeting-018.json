@@ -1,0 +1,20 @@
+{
+  "transcript": "Gia: The accessibility audit found three contrast issues. We agreed to fix all three before release. Mateo, update the color tokens. Lin, verify the fixes with the audit tool by Thursday. Both: We'll handle it.",
+  "expected": {
+    "decisions": [
+      "Fix all three contrast issues before release."
+    ],
+    "action_items": [
+      {
+        "owner": "Mateo",
+        "task": "Update the color tokens.",
+        "due": null
+      },
+      {
+        "owner": "Lin",
+        "task": "Verify the contrast fixes with the audit tool.",
+        "due": "by Thursday"
+      }
+    ]
+  }
+}
