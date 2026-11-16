@@ -1,0 +1,13 @@
+{
+  "transcript": "Kai: We talked about adding French support, but need usage data first. No decision today. Mei, pull the language usage report when you have a chance. Mei: Will do.",
+  "expected": {
+    "decisions": [],
+    "action_items": [
+      {
+        "owner": "Mei",
+        "task": "Pull the language usage report.",
+        "due": null
+      }
+    ]
+  }
+}
