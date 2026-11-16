@@ -1,0 +1,15 @@
+{
+  "transcript": "Sofia: We selected the 90-minute onboarding format. Liam, update the facilitator guide and share it with the group. Liam: By Wednesday. Sofia: We'll start using the new format in September.",
+  "expected": {
+    "decisions": [
+      "Use the 90-minute onboarding format starting in September."
+    ],
+    "action_items": [
+      {
+        "owner": "Liam",
+        "task": "Update the facilitator guide and share it with the group.",
+        "due": "by Wednesday"
+      }
+    ]
+  }
+}
