@@ -1,0 +1,15 @@
+{
+  "transcript": "Ethan: The vendor says delivery may slip. We haven't changed the launch date; let's wait for written confirmation. Someone should check with them tomorrow, but we did not assign an owner.",
+  "expected": {
+    "decisions": [
+      "Keep the current launch date unchanged pending written confirmation from the vendor."
+    ],
+    "action_items": [
+      {
+        "owner": "Unassigned",
+        "task": "Check with the vendor about the delivery timing.",
+        "due": "tomorrow"
+      }
+    ]
+  }
+}
