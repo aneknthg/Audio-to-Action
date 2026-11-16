@@ -1,0 +1,13 @@
+{
+  "transcript": "Zoe: The customer import failed for two accounts. Ravi, investigate the logs and report back. Ravi: I can look today. Zoe: We haven't set a due date. We also discussed retrying imports automatically but made no decision.",
+  "expected": {
+    "decisions": [],
+    "action_items": [
+      {
+        "owner": "Ravi",
+        "task": "Investigate the logs for the failed customer imports and report back.",
+        "due": null
+      }
+    ]
+  }
+}
