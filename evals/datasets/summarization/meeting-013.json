@@ -1,0 +1,15 @@
+{
+  "transcript": "Mina: Let's use the smaller conference room for the workshop. Caleb, reserve it for Friday morning. Caleb: I'll book it. Mina: We'll decide on the workshop agenda after the speakers confirm.",
+  "expected": {
+    "decisions": [
+      "Use the smaller conference room for the workshop."
+    ],
+    "action_items": [
+      {
+        "owner": "Caleb",
+        "task": "Reserve the smaller conference room for the workshop.",
+        "due": "Friday morning"
+      }
+    ]
+  }
+}
