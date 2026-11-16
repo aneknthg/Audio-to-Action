@@ -1,0 +1,15 @@
+{
+  "transcript": "Noah: We agreed to cap conference travel spending at $8,000 this quarter. Iris, update the budget sheet today. Iris: Done by this afternoon. Noah: We can review actual spend at next month's meeting.",
+  "expected": {
+    "decisions": [
+      "Cap conference travel spending at $8,000 this quarter."
+    ],
+    "action_items": [
+      {
+        "owner": "Iris",
+        "task": "Update the budget sheet.",
+        "due": "today"
+      }
+    ]
+  }
+}
