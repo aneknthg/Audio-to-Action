@@ -1,0 +1,15 @@
+{
+  "transcript": "Dev: We need a decision on the office move. After comparing costs, we agreed to renew the current lease for one year. June, ask the landlord about the renewal paperwork this week. June: Okay.",
+  "expected": {
+    "decisions": [
+      "Renew the current office lease for one year."
+    ],
+    "action_items": [
+      {
+        "owner": "June",
+        "task": "Ask the landlord about the renewal paperwork.",
+        "due": "this week"
+      }
+    ]
+  }
+}
