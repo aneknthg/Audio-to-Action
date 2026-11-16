@@ -1,0 +1,7 @@
+{
+  "transcript": "Alex: We could cut the onboarding steps from six to four. Jordan: That sounds good, but let's wait for the user interviews before deciding. Alex: Agreed. No follow-up tasks today.",
+  "expected": {
+    "decisions": [],
+    "action_items": []
+  }
+}
