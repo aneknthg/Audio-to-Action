@@ -1,0 +1,16 @@
+{
+  "transcript": "Rae: We'll ship the export feature on December 3, pending security review. Chris, book the review with security for next Tuesday. Chris: I'll send the invite. Rae: Keep the launch date tentative until review is complete.",
+  "expected": {
+    "decisions": [
+      "Tentatively target December 3 for the export feature launch, pending security review.",
+      "Keep the launch date tentative until the security review is complete."
+    ],
+    "action_items": [
+      {
+        "owner": "Chris",
+        "task": "Book the security review.",
+        "due": "next Tuesday"
+      }
+    ]
+  }
+}
