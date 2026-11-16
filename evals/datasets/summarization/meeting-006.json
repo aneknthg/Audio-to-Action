@@ -1,0 +1,15 @@
+{
+  "transcript": "Elena: The dashboard is too slow when filtering by region. Marcus, profile the query and share the findings by Wednesday. Marcus: I will. Elena: Let's postpone adding the map until we see the performance results.",
+  "expected": {
+    "decisions": [
+      "Postpone adding the map until the performance results are reviewed."
+    ],
+    "action_items": [
+      {
+        "owner": "Marcus",
+        "task": "Profile the regional dashboard query and share the findings.",
+        "due": "by Wednesday"
+      }
+    ]
+  }
+}
