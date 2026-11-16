@@ -18,7 +18,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const mean = (values) => values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
 
 function tokens(text) {
-  return String(text || "").toLowerCase().match(/[\\p{L}\\p{N}]+/gu) || [];
+  return String(text || "").toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
 }
 
 function rougeL(reference, candidate) {
@@ -44,7 +44,7 @@ async function main() {
   if (!fs.existsSync(datasetDir)) throw new Error(`Dataset not found: ${datasetDir}. Run evals/prepare-meetingbank.py first.`);
   const files = fs.readdirSync(datasetDir).filter((file) => file.endsWith(".json")).sort();
   if (!files.length) throw new Error(`No .json cases found in ${datasetDir}. Run evals/prepare-meetingbank.py first.`);
-  const cases = files.map((file) => ({ id: file.replace(/\\.json$/, ""), ...JSON.parse(fs.readFileSync(path.join(datasetDir, file), "utf8")) }));
+  const cases = files.map((file) => ({ id: file.replace(/\.json$/, ""), ...JSON.parse(fs.readFileSync(path.join(datasetDir, file), "utf8")) }));
   const runs = [];
 
   for (const model of models) {
@@ -80,7 +80,7 @@ async function main() {
       avg_latency_s: ((mean(ok.map((run) => run.latencyMs)) || 0) / 1000).toFixed(1),
     };
   });
-  console.log("\\nMeetingBank summarization eval (ROUGE-L F1; higher is better)");
+  console.log("\nMeetingBank summarization eval (ROUGE-L F1; higher is better)");
   console.table(table);
 
   const outDir = path.join(__dirname, "results");
