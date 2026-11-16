@@ -1,0 +1,15 @@
+{
+  "transcript": "Nia: We agreed to archive projects that have had no activity for 18 months. Carlos, draft the customer notice and send it for review by August 5. Carlos: Yes. Nia: The archive will happen after the notice is approved.",
+  "expected": {
+    "decisions": [
+      "Archive projects with no activity for 18 months, after the customer notice is approved."
+    ],
+    "action_items": [
+      {
+        "owner": "Carlos",
+        "task": "Draft the customer notice and send it for review.",
+        "due": "by August 5"
+      }
+    ]
+  }
+}
