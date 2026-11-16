@@ -1,0 +1,15 @@
+{
+  "transcript": "Nina: The support backlog is growing. Omar, please draft a triage plan before Monday. Omar: I can do that. Nina: Let's prioritize billing bugs first. We haven't decided whether to add weekend coverage.",
+  "expected": {
+    "decisions": [
+      "Prioritize billing bugs first."
+    ],
+    "action_items": [
+      {
+        "owner": "Omar",
+        "task": "Draft a triage plan.",
+        "due": "before Monday"
+      }
+    ]
+  }
+}
