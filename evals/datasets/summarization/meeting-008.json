@@ -1,0 +1,15 @@
+{
+  "transcript": "Luca: The campaign could launch in April, but we need legal approval first. Amira: I will send the draft to legal tomorrow. Luca: Good, no launch date is final until they respond.",
+  "expected": {
+    "decisions": [
+      "No campaign launch date is final until legal responds."
+    ],
+    "action_items": [
+      {
+        "owner": "Amira",
+        "task": "Send the campaign draft to legal.",
+        "due": "tomorrow"
+      }
+    ]
+  }
+}
