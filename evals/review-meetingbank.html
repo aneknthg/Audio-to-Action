@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MeetingBank Eval Review</title>
+<style>
+:root{font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#20252b;background:#f4f6f8}
+body{margin:0}header{background:#fff;border-bottom:1px solid #dce1e6;padding:20px max(24px,calc((100vw - 1200px)/2))}
+h1{font-size:22px;margin:0 0 4px}.sub{color:#5c6670;font-size:14px}
+main{max-width:1200px;margin:24px auto;padding:0 24px}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+select,button{font:inherit;padding:8px 12px;border:1px solid #cbd2d9;border-radius:8px;background:white;color:inherit}
+button{cursor:pointer}.score{font-weight:650;border-radius:999px;background:#e8eef8;padding:5px 10px}
+.meta{color:#57616c;margin-left:auto}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:white;border:1px solid #dce1e6;border-radius:12px;overflow:hidden}
+.panel h2{font-size:15px;margin:0;padding:12px 16px;border-bottom:1px solid #e7eaee}
+.content{padding:16px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:60vh;overflow:auto}
+.transcript{margin-top:16px}.transcript summary{padding:12px 16px;cursor:pointer;font-weight:600}.transcript .content{border-top:1px solid #e7eaee;color:#46515c}
+.error{background:#fff1f0;color:#9c2b22;padding:14px;border-radius:8px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.meta{margin-left:0;width:100%}.content{max-height:45vh}}
+</style></head>
+<body>
+<header><h1>MeetingBank Eval Review</h1><div class="sub">Compare the human reference with model output. Runs stay on this machine.</div></header>
+<main>
+<div id="status" class="sub">Loading latest eval…</div>
+<div id="app" hidden>
+<div class="controls">
+<label>Case <select id="case"></select></label>
+<label>Model <select id="model"></select></label>
+<button id="prev">← Previous</button><button id="next">Next →</button>
+<span class="score" id="score"></span><span class="meta" id="meta"></span>
+</div>
+<div id="error"></div>
+<div class="grid">
+<section class="panel"><h2>Expected summary</h2><div class="content" id="expected"></div></section>
+<section class="panel"><h2>Actual model output</h2><div class="content" id="actual"></div></section>
+</div>
+<details class="panel transcript"><summary>Source transcript</summary><div class="content" id="transcript"></div></details>
+</div></main>
+<script>
+const $=s=>document.querySelector(s);let data;let currentRuns=[];
+function render(){const id=$("#case").value,model=$("#model").value;const row=data.cases.find(x=>x.id===id);const run=row.runs.find(x=>x.model===model);
+$("#expected").textContent=row.expected||"(No reference summary found)";
+$("#actual").textContent=run?.output||"(No model output saved)";
+$("#transcript").textContent=row.transcript||"(Transcript unavailable)";
+$("#score").textContent=run?.rougeL==null?"No score":`ROUGE-L ${(run.rougeL*100).toFixed(1)}%`;
+$("#meta").textContent=`${model} · ${row.id}`;
+$("#error").innerHTML="";
+if(run?.error){const e=document.createElement("div");e.className="error";e.textContent=run.error;$("#error").append(e)}
+}
+fetch("/api/data").then(r=>{if(!r.ok)throw new Error("No saved MeetingBank eval results found. Run npm run eval:meetingbank first.");return r.json()}).then(d=>{
+data=d;$("#status").textContent=`Loaded ${d.cases.length} cases from ${d.resultFile}`;
+const cases=[...d.cases].sort((a,b)=>(a.runs.find(x=>x.model===($("#model").value||a.runs[0]?.model))?.rougeL??1)-(b.runs.find(x=>x.model===($("#model").value||b.runs[0]?.model))?.rougeL??1));
+for(const c of cases){const o=document.createElement("option");o.value=c.id;o.textContent=`${c.id} · ${c.runs.reduce((m,r)=>Math.min(m,r.rougeL??1),1)*100|0}%`;$("#case").append(o)}
+const models=[...new Set(d.cases.flatMap(c=>c.runs.map(r=>r.model)))];
+for(const m of models){const o=document.createElement("option");o.value=m;o.textContent=m;$("#model").append(o)}
+$("#app").hidden=false;
+if(cases.length){$("#case").value=cases[0].id;render()}
+}).catch(e=>{$("#status").textContent=e.message});
+$("#case").addEventListener("change",render);$("#model").addEventListener("change",render);
+function move(delta){const s=$("#case"),n=(s.selectedIndex+delta+s.options.length)%s.options.length;s.selectedIndex=n;render()}
+$("#prev").onclick=()=>move(-1);$("#next").onclick=()=>move(1);
+</script></body></html>
