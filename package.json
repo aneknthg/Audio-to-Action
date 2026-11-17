@@ -12,6 +12,7 @@
     "test": "node --test",
     "eval:summarize": "node evals/run-summarize-eval.js",
     "eval:meetingbank": "node evals/run-meetingbank-eval.js",
+    "eval:review": "node evals/review-meetingbank.js",
     "eval:transcribe": "node evals/run-transcribe-eval.js"
   },
   "dependencies": {
